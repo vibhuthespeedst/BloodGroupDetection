@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Group Detection</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: 
+                url('https://example.com/blood-bg1.jpg') no-repeat center center fixed,
+                url('https://example.com/blood-bg2.jpg') no-repeat top left fixed,
+                url('https://example.com/blood-bg3.jpg') no-repeat bottom right fixed;
+            background-size: 30% 30%, 30% 30%, 40% 40%; /* Different sizes for each image */
+            background-attachment: fixed;
+            animation: bloodBackground 15s ease-in-out infinite;
+        }
+
+        @keyframes bloodBackground {
+            0% { background-position: center, top left, bottom right; }
+            50% { background-position: right bottom, center, top left; }
+            100% { background-position: left top, right bottom, center; }
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.85); /* Semi-transparent background */
+            border-radius: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #B22222; /* Blood red color */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .input-file {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 2px solid #B22222;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        .input-file:hover, .input-file:focus {
+            border-color: #8B0000;
+        }
+
+        .submit-btn {
+            background-color: #B22222;
+            color: white;
+            font-size: 1.2rem;
+            padding: 12px 24px;
+            border-radius: 10px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #8B0000;
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container" data-aos="fade-up" data-aos-duration="1000">
+        <h1 class="form-title" data-aos="fade-left" data-aos-duration="1200">Upload Blood Sample Image</h1>
+        <form action="/predict" method="post" enctype="multipart/form-data" data-aos="fade-right" data-aos-duration="1300">
+            <input type="file" name="image" class="input-file" required>
+            <input type="submit" value="Predict" class="submit-btn">
+        </form>
+    </div>
+    
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
