@@ -86,7 +86,7 @@ The model achieved an accuracy of **93%** on the test dataset. Below is the conf
 
 
 ## Contributors
--**Vibhu Mishra** - Developer
+- **Vibhu Mishra** - Developer
 - **Rahul Patel** - Developer
 
 Feel free to contribute to this project by submitting issues or pull requests!
