@@ -1,92 +1,143 @@
-# Blood Group Detection Using Infrared Hand Images
+# 🩸 Blood Group Detection Using Infrared Hand Images
 
-![image](https://github.com/user-attachments/assets/5f6ada77-da41-4d15-93c7-d878126f4883)
+A Flask web application that detects blood groups from infrared hand images using deep learning (VGG16 model). This project uses computer vision and machine learning to classify blood groups based on thermal imaging of hands.
 
-![image](https://github.com/user-attachments/assets/310f3e27-b45c-4674-bbb0-06c6a986e121)
+## ✨ Features
 
-## Overview
-This project utilizes deep learning techniques to detect blood groups from infrared images of hands. By analyzing spectroscopic features, the model classifies blood types with high accuracy.
+- 🔬 **Deep Learning Model**: VGG16-based CNN for accurate blood group classification
+- 📸 **Image Upload**: Upload infrared hand images for analysis
+- 🌡️ **Temperature Input**: Include temperature data for enhanced predictions
+- 🎨 **Modern UI**: Beautiful, responsive web interface
+- 🚀 **Easy Deployment**: Ready-to-deploy on Render.com or other platforms
 
-## Features
-- Automated blood group classification
-- Uses infrared hand images for detection
-- Deep learning-based model trained on a labeled dataset
-- Flask web application for easy interaction
-
-## Dataset
-The dataset consists of infrared images categorized into different blood groups:
+## 📋 Project Structure
 
 ```
-/dataset_folder
-    /train
-        /A Positive
-        /A Negative
-        /AB Positive
-        /AB Negative
-        /B Positive
-        /B Negative
-        /O Positive
-    /test
-    /validation
+.
+├── app.py                          # Main Flask application
+├── templates/                      # HTML templates
+│   ├── index.html                 # Home page with upload form
+│   └── result.html                # Results display page
+├── blood_group_model_vgg16.keras  # Trained VGG16 model (98MB)
+├── class_indices.pkl              # Class labels mapping
+├── uploads/                        # Temporary image storage
+│
+├── # Training & Evaluation Scripts
+├── model.py                       # Model architecture definition
+├── preprocess.py                  # Image preprocessing utilities
+├── split_data.py                  # Dataset splitting script
+├── evaluate.py                    # Model evaluation script
+├── check_accuracy.py              # Accuracy checking utilities
+├── overall_accuracy.py            # Overall accuracy calculation
+├── training_validation_accuracy_check.py  # Training metrics
+├── class_indices_pkl.py           # Generate class indices
+├── convert_model.py               # Model conversion utilities
+│
+├── # Results & Documentation
+├── confusion_matrix.png           # Model confusion matrix
+├── training_validation_accuracy.png  # Training curves
+├── classification_report.txt      # Detailed classification report
+├── history.pkl                    # Training history
+├── model.json                     # Model architecture JSON
+│
+├── # Documentation
+├── Blood Group Detection Using InfraRed Hand Image.pdf
+├── problem_statement_and_Inovation.pdf
+├── DEPLOYMENT.md                  # Deployment guide
+├── RENDER_SETUP.md               # Render.com setup instructions
+├── README.md                      # This file
+│
+└── # Configuration Files
+    ├── requirements.txt           # Python dependencies
+    ├── Procfile                   # Deployment configuration
+    ├── render.yaml                # Render.com config
+    └── runtime.txt                # Python version specification
 ```
 
-## Installation
+## 🚀 Quick Start
 
-1. Clone the repository:
+### Local Development
+
+1. **Clone the repository:**
    ```bash
-   git clone https://github.com/vibhuthespeedst/BloodGroupDetection.git
+   git clone https://github.com/RAHULPATEL2002/blood-group-detection.git
    cd blood-group-detection
    ```
-2. Install dependencies:
+
+2. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
-3. Run the Flask application:
+
+3. **Run the application:**
    ```bash
    python app.py
    ```
 
-## Model Training
-To train the model, execute:
-```bash
-python train_model.py
-```
-The trained model is saved as `blood_group_model_vgg16.h5`.
+4. **Open your browser:**
+   Visit `http://localhost:5000`
 
-## Usage
-1. Start the Flask app and open the web interface.
-2. Upload an infrared image of a hand.
-3. The model predicts and displays the blood group.
+### Production Deployment
 
-## Screenshots
-### Model Training
-![Screenshot 2025-03-10 054922](https://github.com/user-attachments/assets/04ae9d30-552b-4317-b74d-0d5f16a35d77)
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
 
+**Quick Deploy to Render.com:**
+1. Push your code to GitHub (already done ✅)
+2. Connect your repo to [Render.com](https://render.com)
+3. Render will auto-detect the configuration from `render.yaml`
+4. Deploy and get your live URL!
 
-### Web Interface
-![image](https://github.com/user-attachments/assets/a5e9f247-8fe3-4de7-bdb9-90fb1fb44260)
+## 📦 Requirements
 
-![image](https://github.com/user-attachments/assets/06faadac-129f-4816-ad9f-6a8e02c7d074)
+- **Python**: 3.10.12 or 3.13+ (see `runtime.txt`)
+- **Flask**: 3.1.0
+- **TensorFlow**: 2.20.0
+- **NumPy**: < 2.0.0
+- **Pillow**: 10.4.0
+- **Gunicorn**: 21.2.0 (for production)
 
-![image](https://github.com/user-attachments/assets/db1d3ec2-e1e9-4536-9fbc-c42035d42319)
+## 🔧 Model Details
 
+- **Architecture**: VGG16-based Convolutional Neural Network
+- **Input Size**: 128x128 pixels
+- **Classes**: 8 blood groups (A+, A-, B+, B-, AB+, AB-, O+, O-)
+- **Training**: Includes temperature-based classification
 
+## 📊 Training Scripts
 
+The repository includes several scripts for model training and evaluation:
 
-## Technologies Used
-- Python
-- TensorFlow/Keras
-- OpenCV
-- Flask
+- `model.py` - Define and compile the model
+- `preprocess.py` - Image preprocessing pipeline
+- `split_data.py` - Split dataset into train/validation/test
+- `evaluate.py` - Evaluate model performance
+- `check_accuracy.py` - Check model accuracy metrics
+- `overall_accuracy.py` - Calculate overall accuracy
+- `training_validation_accuracy_check.py` - Training metrics
 
-## Results
-The model achieved an accuracy of **93%** on the test dataset. Below is the confusion matrix:
+## 📝 Important Notes
 
-![Screenshot 2025-03-10 054656](https://github.com/user-attachments/assets/13dc3b46-24c4-4fa9-961d-5cc29d0a2acf)
+- ✅ Model file (`blood_group_model_vgg16.keras`) and `class_indices.pkl` are included
+- ✅ Uploaded images are automatically deleted after processing
+- ✅ The app uses a pre-trained VGG16 model for blood group classification
+- ⚠️ Large model files (>100MB) are excluded from Git (use Git LFS if needed)
 
+## 🌐 Live Deployment
 
-## Contributors
-- **Vibhu Mishra** - Developer
-- **Rahul Patel** - Developer
+Once deployed, your app will be available at:
+`https://your-app-name.onrender.com`
 
-Feel free to contribute to this project by submitting issues or pull requests!
+## 📚 Documentation
+
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Complete deployment guide
+- [RENDER_SETUP.md](RENDER_SETUP.md) - Render.com specific setup
+- PDF files included for project documentation
+
+## 🤝 Contributing
+
+This project is for educational and research purposes. Feel free to fork and improve!
+
+## 📄 License
+
+This project is for educational/research purposes.
+
